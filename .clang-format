@@ -1,0 +1,6 @@
+# Mostly using Google's style for now
+BasedOnStyle: Google
+IndentWidth: 4
+DerivePointerAlignment: false
+PointerAlignment: Left
+ColumnLimit: 150
