@@ -26,7 +26,7 @@ add_subdirectory ("src")
 add_subdirectory ("test")
 add_subdirectory ("utils")
 
-
+# Setting up main executable
 add_executable(${PROJECT_NAME} main.cpp "${SDL2_INCLUDE_DIR}/SDL.h")
 target_link_libraries(${PROJECT_NAME} PRIVATE
     controller
@@ -42,10 +42,10 @@ add_custom_command( TARGET ${PROJECT_NAME}
                     COMMAND ${CMAKE_COMMAND} -E copy_if_different "${SDL2_PATH}/lib/x64/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 
 set(MAIN_INCLUDE_DIRS 
-    "${CMAKE_SOURCE_DIR}/src/controller/include" 
+    "${CMAKE_SOURCE_DIR}/src/entities/include"
     "${CMAKE_SOURCE_DIR}/src/model/include" 
     "${CMAKE_SOURCE_DIR}/src/view/include"
-    "${CMAKE_SOURCE_DIR}/src/entities/include"
+    "${CMAKE_SOURCE_DIR}/src/controller/include" 
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${MAIN_INCLUDE_DIRS})

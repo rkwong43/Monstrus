@@ -3,21 +3,19 @@
 
 namespace Game::Controller {
     void BasicController::start() {
-        /*
-        SDL_Init(SDL_INIT_VIDEO);
-
-        SDL_Window* window = SDL_CreateWindow("SDL2Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
-
-        SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-        SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
-
-        SDL_Delay(1000);
-
-        SDL_DestroyWindow(window);
+        // SDL2 initialization
+        SDL_Init(SDL_INIT_EVERYTHING);
+        this->view->initAssets();
+        // Main game loop
+        // For now, this is just the game loop for a single instance/fight. Will add menus and the tavern later on
+        while (true) {
+            this->processInput();
+            this->model->update();
+            this->view->render();
+            // Temporary until I add SDL's clock
+            break;
+        }
         SDL_Quit();
-        */
     }
 
     void BasicController::processInput() {}
