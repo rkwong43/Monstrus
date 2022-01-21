@@ -13,5 +13,6 @@ namespace Game::View {
          *
          */
         virtual void initAssets() = 0;
+        // TODO: Add some way to handle animations
     };
 }  // namespace Game::View

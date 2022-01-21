@@ -1,5 +1,7 @@
 #pragma once
 
+#include "EntityTypes.hpp"
+
 namespace Game::Entities {
     class IEntity {
        public:
@@ -21,5 +23,11 @@ namespace Game::Entities {
          * Called in the reaction phase, after the frontmost entities use their actions.
          */
         virtual void react() = 0;
+        /**
+         * @brief Returns what type the entity is.
+         *
+         * @return EntityType of what type of entity it is.
+         */
+        virtual EntityType getType() = 0;
     };
 }  // namespace Game::Entities

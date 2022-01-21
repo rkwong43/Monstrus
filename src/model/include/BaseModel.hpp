@@ -9,6 +9,9 @@
 namespace Game::Model {
     class BaseModel : public IModel {
        public:
+        // TODO: Maybe add some parameters later on
+        BaseModel() { generateUnits(); }
+
         void update() override;
 
        protected:
@@ -35,8 +38,18 @@ namespace Game::Model {
         void reactionPhase();
 
        private:
+        /**
+         * @brief Generates a starting team of units and sets up the types of units generated in the run.
+         *
+         * TODO: Attach a generator class? Or a factory
+         *
+         */
+        void generateUnits();
         // Should be limited to 5(?) units for now
-        std::unique_ptr<std::vector<std::unique_ptr<Game::Entities::IEntity>>> allies;
-        std::unique_ptr<std::vector<std::unique_ptr<Game::Entities::IEntity>>> enemies;
+        // Replace with a linked list?
+        // TODO: Look into some other way of storing them other than nested unique pointers. This is very messy
+        // Look into efficiency, but shouldn't be too big of an issue because these aren't meant to be large vectors
+        std::unique_ptr<std::vector<std::unique_ptr<Entities::IEntity>>> allies{std::make_unique<std::vector<std::unique_ptr<Entities::IEntity>>>()};
+        std::unique_ptr<std::vector<std::unique_ptr<Entities::IEntity>>> enemies{std::make_unique<std::vector<std::unique_ptr<Entities::IEntity>>>()};
     };
 }  // namespace Game::Model
