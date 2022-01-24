@@ -5,7 +5,7 @@
 namespace Game::View {
     class BasicView : public IView {
        public:
-        void render() override;
+        void renderAll() override;
         void initAssets() override;
     };
 }  // namespace Game::View

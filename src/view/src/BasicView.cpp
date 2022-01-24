@@ -3,7 +3,7 @@
 #include "BasicView.hpp"
 
 namespace Game::View {
-    void BasicView::render() {
+    void BasicView::renderAll() {
         // For now, just test that SDL works
         SDL_Window* window = SDL_CreateWindow("SDL2Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
 

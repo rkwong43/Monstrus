@@ -9,9 +9,25 @@ namespace Game::Model {
     void BaseModel::update() {
         // Actions that are performed each tick
         // TODO: have some sort of lock or blocker so animations can play out etc.
-        this->setupPhase();
-        this->actionPhase();
-        this->reactionPhase();
+        // TODO: Add support for enemy phases
+        switch (currentState) {
+            case State::SetupAlly:
+                setupPhase();
+                break;
+            case State::ActionAlly:
+                actionPhase();
+                break;
+            case State::ReactionAlly:
+                reactionPhase();
+                break;
+            default:
+                throw std::runtime_error("Invalid state encountered in model state machine.");
+                break;
+        }
+        // Check if each phase is done:
+        if (true) {
+            updateState();
+        }
     }
 
     void BaseModel::setupPhase() {
@@ -54,9 +70,16 @@ namespace Game::Model {
         std::cout << "Generating units..." << std::endl;
         // TODO: For now, 2 for testing
         for (int i = 0; i < 2; ++i) {
-            this->allies->push_back(std::make_unique<Entities::Knight>());
-            this->enemies->push_back(std::make_unique<Entities::Knight>());
+            allies->push_back(std::make_unique<Entities::Knight>());
+            enemies->push_back(std::make_unique<Entities::Knight>());
         }
         std::cout << "Done generating units!" << std::endl;
+    }
+
+    void BaseModel::updateState() {
+        auto oldState = states->front();
+        states->pop_front();
+        currentState = states->front();
+        states->push_back(currentState);
     }
 }  // namespace Game::Model

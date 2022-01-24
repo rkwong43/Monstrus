@@ -14,7 +14,7 @@ namespace Game::Controller {
             this->processInput();
             this->model->update();
             // TODO: Add some way to pass variables through to render
-            this->view->render();
+            this->view->renderAll();
             // Temporary until I add SDL's clock
             break;
         }
