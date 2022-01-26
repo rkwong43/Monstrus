@@ -6,6 +6,7 @@
 
 #include "IModel.hpp"
 #include "IEntity.hpp"
+#include "LinkedList.hpp"
 
 namespace Game::Model {
     class BaseModel : public IModel {
@@ -63,8 +64,8 @@ namespace Game::Model {
         State currentState{State::SetupAlly};
 
         // Linked list representing the state machine
-        std::unique_ptr<std::list<State>> states{std::make_unique<std::list<State>>(State::SetupAlly, State::SetupEnemy, State::ActionAlly,
-                                                                                    State::ActionEnemy, State::ReactionAlly, State::ReactionEnemy)};
+        std::unique_ptr<Utils::ConstLinkedList<State>> states{std::make_unique<Utils::ConstLinkedList<State>>(std::initializer_list<State>(
+            {State::SetupAlly, State::SetupEnemy, State::ActionAlly, State::ActionEnemy, State::ReactionAlly, State::ReactionEnemy}))};
 
         // Should be limited to 5(?) units for now
         // Replace with a linked list?

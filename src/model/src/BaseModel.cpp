@@ -77,9 +77,8 @@ namespace Game::Model {
     }
 
     void BaseModel::updateState() {
-        auto oldState = states->front();
-        states->pop_front();
+        // Cycles through the states
         currentState = states->front();
-        states->push_back(currentState);
+        states->next();
     }
 }  // namespace Game::Model
