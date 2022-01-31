@@ -11,8 +11,10 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 set(PROJECT_NAME "Game")
 project(${PROJECT_NAME} VERSION 0.1 LANGUAGES CXX)
 
+
 # SDL2
 # Probably can clean up instead of having a bunch of the source code in extern but it's easier to run for people who download it
+# FetchContent works as well but it does take a bit to run every time. This is probably better for now
 file(GLOB SDL2_PATH CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/extern/SDL2-*")
 if (${SDL2_PATH} STREQUAL "")
     message("SDL2 not found in extern/SDL2-*...")
@@ -20,11 +22,23 @@ endif()
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR})
 
+# Catch2
+enable_testing()
+Include(FetchContent)
+
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG        v3.0.0-preview3
+)
+
+FetchContent_MakeAvailable(Catch2)
+
 include(CTest)
 
-add_subdirectory ("src")
-add_subdirectory ("test")
-add_subdirectory ("utils")
+add_subdirectory("src")
+add_subdirectory("utils")
+add_subdirectory("test")
 
 # Setting up main executable
 add_executable(${PROJECT_NAME} main.cpp "${SDL2_INCLUDE_DIR}/SDL.h")

@@ -20,10 +20,11 @@ def main():
     subprocess.run(["cmake", "--build", args.dir])
 
     if args.test:
-        return 0
+        subprocess.run(["ctest", "-VV", "--test-dir",
+                       "{}".format(args.dir), "-C", "Debug", "--output-on-failure"])
     else:
         # TODO: Figure out a name for the game
-        subprocess.run([args.dir + "/bin/Debug/Game.exe"])
+        subprocess.run(["{}/bin/Debug/Game.exe".format(args.dir)])
 
 
 if __name__ == "__main__":

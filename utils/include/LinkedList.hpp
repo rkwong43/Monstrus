@@ -17,8 +17,8 @@ namespace Game::Utils {
     class ConstLinkedList {
        public:
         ConstLinkedList(std::initializer_list<T> params) {
-            for (auto param : params) {
-                innerList->push_front(param);
+            for (auto& param : params) {
+                innerList->push_back(param);
             }
         }
 
