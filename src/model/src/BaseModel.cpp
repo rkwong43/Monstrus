@@ -10,24 +10,15 @@ namespace Game::Model {
         // Actions that are performed each tick
         // TODO: have some sort of lock or blocker so animations can play out etc.
         // TODO: Add support for enemy phases
-        switch (currentState) {
-            case State::SetupAlly:
-                setupPhase();
-                break;
-            case State::ActionAlly:
-                actionPhase();
-                break;
-            case State::ReactionAlly:
-                reactionPhase();
-                break;
-            default:
-                throw std::runtime_error("Invalid state encountered in model state machine.");
-                break;
+        if (currentState == State::SetupAlly || currentState == State::SetupEnemy) {
+
+        } else if (currentState == State::ActionAlly || currentState == State::ActionEnemy) {
+
+        } else {
+
         }
-        // Check if each phase is done:
-        if (true) {
-            updateState();
-        }
+        // More processing?
+        throw std::runtime_error("Invalid state encountered in model state machine.");
     }
 
     void BaseModel::setupPhase() {
