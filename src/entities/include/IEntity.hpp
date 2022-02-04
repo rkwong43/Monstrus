@@ -29,5 +29,10 @@ namespace Game::Entities {
          * @return EntityType of what type of entity it is.
          */
         virtual EntityType getType() = 0;
+        /**
+         * @brief Returns the entity's current HP
+         *
+         */
+        virtual int getHp() = 0;
     };
 }  // namespace Game::Entities

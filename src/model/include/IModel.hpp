@@ -16,6 +16,6 @@ namespace Game::Model {
          *
          * @return True if the game is over, false otherwise
          */
-        virtual bool isGameOver() = 0;
+        virtual const bool isGameOver() = 0;
     };
 }  // namespace Game::Model

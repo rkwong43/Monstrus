@@ -16,7 +16,7 @@ namespace Game::Utils {
     template <typename T>
     class ConstLinkedList {
        public:
-        ConstLinkedList(std::initializer_list<T> params) {
+        ConstLinkedList(const std::initializer_list<T> params) {
             for (auto& param : params) {
                 innerList->push_back(param);
             }
@@ -27,7 +27,7 @@ namespace Game::Utils {
          *
          * @return T The next element.
          */
-        T front() { return innerList->front(); }
+        const T front() { return innerList->front(); }
 
         /**
          * @brief Cycles the list and puts the next element at the front.

@@ -20,7 +20,7 @@ namespace Game::Model {
 
         void update() override;
 
-        bool isGameOver() override;
+        const bool isGameOver() override;
 
        protected:
         /**
@@ -72,6 +72,14 @@ namespace Game::Model {
          */
         void checkCurrentSide();
 
+        /**
+         * @brief Removes dead entities from the given vector.
+         *
+         * @param vec The vector to remove dead entities from.
+         *
+         */
+        void removeIfDead(ENTITY_VECTOR_TYPE& vec);
+
         // If the game is over!
         bool gameOver{false};
         // If the state needs to be cycled:
@@ -83,7 +91,7 @@ namespace Game::Model {
         State currentState{State::Setup};
 
         // Linked list representing the state machine
-        std::unique_ptr<Utils::ConstLinkedList<State>> states{
+        const std::unique_ptr<Utils::ConstLinkedList<State>> states{
             std::make_unique<Utils::ConstLinkedList<State>>(std::initializer_list<State>({State::Setup, State::Action, State::Reaction}))};
 
         // Should be limited to 5(?) units for now

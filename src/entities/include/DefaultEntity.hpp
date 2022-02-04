@@ -25,6 +25,7 @@ namespace Game::Entities {
         void setUp() override;
         void takeAction() override;
         void react() override;
+        int getHp() override;
 
         virtual EntityType getType() = 0;
 
