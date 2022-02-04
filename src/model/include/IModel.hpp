@@ -10,5 +10,12 @@ namespace Game::Model {
          *
          */
         virtual void update() = 0;
+
+        /**
+         * @brief Returns if the game is over.
+         *
+         * @return True if the game is over, false otherwise
+         */
+        virtual bool isGameOver() = 0;
     };
 }  // namespace Game::Model

@@ -9,14 +9,15 @@ namespace Game::Controller {
         this->view->initAssets();
         // Main game loop
         // For now, this is just the game loop for a single instance/fight. Will add menus and the tavern later on
-        while (true) {
-            std::cout << "Starting game loop..." << std::endl;
+        int counter = 0;
+        std::cout << "Starting game loop..." << std::endl;
+        while (counter < 20) {
             this->processInput();
             this->model->update();
             // TODO: Add some way to pass variables through to render
             this->view->renderAll();
             // Temporary until I add SDL's clock
-            break;
+            counter++;
         }
         SDL_Quit();
     }

@@ -1,5 +1,5 @@
 #pragma once
 
 namespace Game::Entities {
-    enum class EntityType { Knight };
+    enum class EntityType { Knight, Goblin };
 }  // namespace Game::Entities

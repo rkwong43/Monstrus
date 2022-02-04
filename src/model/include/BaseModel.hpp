@@ -9,6 +9,7 @@
 #include "LinkedList.hpp"
 
 // TODO: Look for a better way to do this
+// Mainly have this to improve readability
 #define ENTITY_VECTOR_TYPE std::shared_ptr<std::vector<std::unique_ptr<Entities::IEntity>>>
 
 namespace Game::Model {
@@ -18,6 +19,8 @@ namespace Game::Model {
         BaseModel() { generateUnits(); }
 
         void update() override;
+
+        bool isGameOver() override;
 
        protected:
         /**
@@ -71,6 +74,10 @@ namespace Game::Model {
 
         // If the game is over!
         bool gameOver{false};
+        // If the state needs to be cycled:
+        // Acts sort of like a switch
+        // Might need to change this if I ever allow multiple sides/teams.
+        bool changeState{false};
 
         // Current state of the model
         State currentState{State::Setup};
