@@ -98,6 +98,6 @@ namespace Game::Model {
     }
 
     void BaseModel::removeIfDead(ENTITY_VECTOR_TYPE & vec) {
-        vec->erase(std::remove_if(vec->begin(), vec->end(), [](std::unique_ptr<Entities::IEntity> e) { return e->getHp() <= 0; }));
+        vec->erase(std::remove_if(vec->begin(), vec->end(), [&](const auto& e) { return e->getHp() <= 0; }), vec->end());
     }
 }  // namespace Game::Model
