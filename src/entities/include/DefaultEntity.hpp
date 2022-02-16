@@ -3,6 +3,7 @@
 #include <memory>
 
 #include "EntityTypes.hpp"
+#include "Action.hpp"
 #include "IEntity.hpp"
 
 namespace Game::Entities {
@@ -22,9 +23,9 @@ namespace Game::Entities {
          */
         Entity(int hp, int attack) : hp(hp), attack(attack){};
 
-        void setUp() override;
-        void takeAction() override;
-        void react() override;
+        Action setUp() override;
+        Action takeAction() override;
+        Action react() override;
         int getHp() override;
 
         virtual EntityType getType() = 0;

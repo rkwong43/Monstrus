@@ -52,7 +52,7 @@ namespace Game::Model {
 
     void BaseModel::setupPhase() {
         // Sets up the current entity:
-        currentSide->at(currentIndex)->setUp();
+        auto action = currentSide->at(currentIndex)->setUp();
         currentIndex++;
     }
 

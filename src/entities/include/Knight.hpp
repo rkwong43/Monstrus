@@ -2,6 +2,7 @@
 
 #include "DefaultEntity.hpp"
 #include "EntityTypes.hpp"
+#include "Action.hpp"
 
 namespace Game::Entities {
     class Knight : public Entity {
@@ -12,9 +13,9 @@ namespace Game::Entities {
          */
         Knight() : Entity(25, 15) {}
 
-        void setUp() override;
-        void takeAction() override;
-        void react() override;
+        Action setUp() override;
+        Action takeAction() override;
+        Action react() override;
 
         EntityType getType() override { return EntityType::Knight; }
     };
