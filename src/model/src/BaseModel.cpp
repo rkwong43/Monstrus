@@ -12,12 +12,12 @@
 namespace Monstrus::Model {
     void BaseModel::update() {
         // TODO: have some sort of lock or blocker so animations can play out etc.
+        checkCurrentSide();
+        updateEntities();
         if (gameOver) {
             std::cout << "Game is over!" << std::endl;
             return;
         }
-        checkCurrentSide();
-        updateEntities();
         switch (currentState) {
             case State::Setup:
                 setupPhase();
