@@ -9,5 +9,7 @@ namespace Monstrus::Controller {
          * Includes the main game loop and processes inputs. Will also manage communication between the model and view.
          */
         virtual void start() = 0;
+
+        virtual ~IController() {}
     };
 }  // Gam::Controller::IController

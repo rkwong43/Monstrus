@@ -41,6 +41,7 @@ add_subdirectory("test")
 
 # Setting up main executable
 add_executable(${PROJECT_NAME} main.cpp "${SDL2_INCLUDE_DIR}/SDL.h")
+#target_compile_options(${PROJECT_NAME} PRIVATE "-Wall")
 target_link_libraries(${PROJECT_NAME} PRIVATE
     controller
     model

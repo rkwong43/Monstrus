@@ -21,6 +21,7 @@ namespace Monstrus::Entities {
 
     class IEntity {
        public:
+        virtual ~IEntity() {}
         /**
          * @brief Calls any abilities that apply in the setup phase (first phase)
          *

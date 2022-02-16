@@ -3,6 +3,7 @@
 namespace Monstrus::View {
     class IView {
        public:
+        virtual ~IView() {}
         /**
          * @brief Renders the game and all the elements shown to the player
          *

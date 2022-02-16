@@ -3,6 +3,7 @@
 namespace Monstrus::Model {
     class IModel {
        public:
+        virtual ~IModel() {}
         /**
          * @brief Updates the game elements, to be called every tick
          *

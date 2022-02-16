@@ -23,6 +23,8 @@ namespace Monstrus::Entities {
          */
         Entity(int hp, int attack) : hp(hp), attack(attack){};
 
+        virtual ~Entity() {}
+
         virtual const Action setUp() = 0;
         virtual const Action takeAction() = 0;
         virtual const Action react() = 0;

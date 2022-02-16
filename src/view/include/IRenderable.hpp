@@ -7,6 +7,7 @@ namespace Monstrus::View {
      */
     class IRenderable {
        public:
+        virtual ~IRenderable() {}
         /**
          * @brief Renders the object on the screen.
          *
