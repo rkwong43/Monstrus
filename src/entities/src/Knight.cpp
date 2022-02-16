@@ -2,7 +2,7 @@
 #include <string>
 #include "Knight.hpp"
 
-namespace Game::Entities {
+namespace Monstrus::Entities {
     const Action Knight::setUp() {
         // For testing, increases HP by 2
         std::cout << "Knight is setting up! Current HP is " + std::to_string(this->hp) << std::endl;

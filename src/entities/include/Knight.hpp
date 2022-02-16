@@ -4,7 +4,7 @@
 #include "EntityTypes.hpp"
 #include "Action.hpp"
 
-namespace Game::Entities {
+namespace Monstrus::Entities {
     class Knight : public Entity {
        public:
         /**

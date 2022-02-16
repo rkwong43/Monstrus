@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Game::View {
+namespace Monstrus::View {
     class IView {
        public:
         /**
@@ -15,4 +15,4 @@ namespace Game::View {
         virtual void initAssets() = 0;
         // TODO: Add some way to handle animations
     };
-}  // namespace Game::View
+}  // namespace Monstrus::View

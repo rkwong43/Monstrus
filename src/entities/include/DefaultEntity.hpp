@@ -6,7 +6,7 @@
 #include "Action.hpp"
 #include "IEntity.hpp"
 
-namespace Game::Entities {
+namespace Monstrus::Entities {
     class Entity : public IEntity {
        public:
         /**
@@ -43,4 +43,4 @@ namespace Game::Entities {
         // Size of enemy team
         int enemySize;
     };
-}  // namespace Game::Entities
+}  // namespace Monstrus::Entities

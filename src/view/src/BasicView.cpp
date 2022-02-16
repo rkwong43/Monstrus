@@ -2,7 +2,7 @@
 #include "SDL.h"
 #include "BasicView.hpp"
 
-namespace Game::View {
+namespace Monstrus::View {
     void BasicView::renderAll() {
         // For now, just test that SDL works
         SDL_Window* window = SDL_CreateWindow("SDL2Test", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, 0);
@@ -21,4 +21,4 @@ namespace Game::View {
         // For loading assets like images later on
         std::cout << "Initializing assets..." << std::endl;
     }
-}  // namespace Game::View
+}  // namespace Monstrus::View

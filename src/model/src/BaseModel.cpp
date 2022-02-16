@@ -7,7 +7,7 @@
 #include "Knight.hpp"
 #include "Goblin.hpp"
 
-namespace Game::Model {
+namespace Monstrus::Model {
     void BaseModel::update() {
         // TODO: have some sort of lock or blocker so animations can play out etc.
         checkCurrentSide();
@@ -118,4 +118,4 @@ namespace Game::Model {
             i++;
         }
     }
-}  // namespace Game::Model
+}  // namespace Monstrus::Model

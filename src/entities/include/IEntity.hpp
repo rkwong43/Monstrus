@@ -3,7 +3,7 @@
 #include "EntityTypes.hpp"
 #include "Action.hpp"
 
-namespace Game::Entities {
+namespace Monstrus::Entities {
     /**
      * @brief Represents an update to an entity.
      *
@@ -58,4 +58,4 @@ namespace Game::Entities {
          */
         virtual void update(Update update) = 0;
     };
-}  // namespace Game::Entities
+}  // namespace Monstrus::Entities

@@ -12,7 +12,7 @@
  * Meant to be used to cycle through states.
  *
  */
-namespace Game::Utils {
+namespace Monstrus::Utils {
     template <typename T>
     class ConstLinkedList {
        public:
@@ -44,4 +44,4 @@ namespace Game::Utils {
         // Inner list
         std::unique_ptr<std::list<T>> innerList{std::make_unique<std::list<T>>()};
     };
-}  // namespace Game::Utils
+}  // namespace Monstrus::Utils

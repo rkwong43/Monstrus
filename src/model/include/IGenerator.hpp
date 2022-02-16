@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Game::Model {
+namespace Monstrus::Model {
     /**
      * @brief Generates units for the game model.
      *
@@ -8,4 +8,4 @@ namespace Game::Model {
     class IGenerator {
        public:
     };
-}  // namespace Game::Model
+}  // namespace Monstrus::Model

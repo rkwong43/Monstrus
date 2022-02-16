@@ -12,7 +12,7 @@
 // Mainly have this to improve readability
 #define ENTITY_VECTOR_TYPE std::shared_ptr<std::vector<std::unique_ptr<Entities::IEntity>>>
 
-namespace Game::Model {
+namespace Monstrus::Model {
     class BaseModel : public IModel {
        public:
         // TODO: Maybe add some parameters later on
@@ -114,4 +114,4 @@ namespace Game::Model {
         // Index of the current side:
         int currentIndex{0};
     };
-}  // namespace Game::Model
+}  // namespace Monstrus::Model

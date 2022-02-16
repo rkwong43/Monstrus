@@ -1,8 +1,10 @@
-# Game
+# Monstrus
 
 ![The WIP sprite of the Knight](/resources/images/Knight.png)
 
-Please give me game name suggestions! So far, it's supposed to be an deck-building auto-battler with procedurally generated enemies and levels. The general theme will be medieval fantasy with magic and other fantasy elements. In-depth details are included in the Lucidchart links at the bottom of this README. 
+So far, it's supposed to be an deck-building auto-battler with procedurally generated enemies and levels. The general theme will be medieval fantasy with magic and other fantasy elements.
+
+In-depth details are included in the Lucidchart links at the bottom of this README.
 
 For now, things are pretty barebones. The entire project/game is built on modern C++ and CMake, with some utility scripts in Python. Rendering, user input, and the rest of the framework uses [SDL2](https://www.libsdl.org/). Testing is done using CTest for test detection and Catch2 as the testing framework.
 
@@ -11,6 +13,10 @@ Controller handles the main game loop and is the bridge between the view and the
 The model handles game logic and game states.
 
 The view handles rendering and asset loading. Will also handle animations.
+
+## Premise
+
+You and your monster buddies want more rights and want monster hunting to be put to a stop. Humanity isn't so accommodating so you and your friends go on a crusade to spread your word.
 
 ## Installation and Running
 

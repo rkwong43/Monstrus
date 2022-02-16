@@ -8,7 +8,7 @@
 #include "BaseModel.hpp"
 #include "BasicView.hpp"
 
-namespace Game::Controller {
+namespace Monstrus::Controller {
     class BasicController : public IController {
        public:
         /**
@@ -32,4 +32,4 @@ namespace Game::Controller {
         // View for rendering
         std::unique_ptr<View::IView> view;
     };
-}  // namespace Game::Controller
+}  // namespace Monstrus::Controller

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-namespace Game::Entities {
+namespace Monstrus::Entities {
     // What type of action is this?
     enum class ActionType {
         // Decreases HP of specified targets

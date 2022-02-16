@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Game::Model {
+namespace Monstrus::Model {
     class IModel {
        public:
         /**
@@ -18,4 +18,4 @@ namespace Game::Model {
          */
         virtual const bool isGameOver() = 0;
     };
-}  // namespace Game::Model
+}  // namespace Monstrus::Model

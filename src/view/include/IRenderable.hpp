@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Game::View {
+namespace Monstrus::View {
     /**
      * @brief Represents something that can be rendered and displayed.
      *
@@ -19,4 +19,4 @@ namespace Game::View {
          */
         virtual void animate() = 0;
     };
-}  // namespace Game::View
+}  // namespace Monstrus::View

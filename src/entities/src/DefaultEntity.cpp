@@ -1,7 +1,7 @@
 #include <iostream>
 #include "DefaultEntity.hpp"
 
-namespace Game::Entities {
+namespace Monstrus::Entities {
     int Entity::getHp() { return hp; }
     void Entity::update(Update update) {
         // Reminder: teamSize and enemySize is the size of the vector
@@ -9,4 +9,4 @@ namespace Game::Entities {
         teamSize = update.teamNum;
         enemySize = update.enemyNum;
     }
-}  // namespace Game::Entities
+}  // namespace Monstrus::Entities

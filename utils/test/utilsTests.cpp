@@ -2,7 +2,7 @@
 #include <memory>
 #include "LinkedList.hpp"
 
-namespace Game::Utils {
+namespace Monstrus::Utils {
     TEST_CASE("ConstLinkedList's first element can be retrieved", "[ConstLinkedList]") {
         ConstLinkedList<int> list1{1, 2, 3};
         REQUIRE(list1.front() == 1);
@@ -26,4 +26,4 @@ namespace Game::Utils {
             REQUIRE(list1.front() == 3);
         }
     }
-}  // namespace Game::Utils
+}  // namespace Monstrus::Utils

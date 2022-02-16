@@ -2,7 +2,7 @@
 
 #include "IRenderable.hpp"
 
-namespace Game::View {
+namespace Monstrus::View {
     /**
      * @brief Represents a unit or item graphically.
      *
@@ -12,4 +12,4 @@ namespace Game::View {
         void render() override = 0;
         void animate() override = 0;
     };
-}  // namespace Game::View
+}  // namespace Monstrus::View

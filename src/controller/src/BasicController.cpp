@@ -2,7 +2,7 @@
 #include "BasicController.hpp"
 #include "SDL.h"
 
-namespace Game::Controller {
+namespace Monstrus::Controller {
     void BasicController::start() {
         // SDL2 initialization
         SDL_Init(SDL_INIT_EVERYTHING);
@@ -23,4 +23,4 @@ namespace Game::Controller {
     }
 
     void BasicController::processInput() {}
-}  // namespace Game::Controller
+}  // namespace Monstrus::Controller

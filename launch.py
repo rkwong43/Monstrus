@@ -23,8 +23,7 @@ def main():
         subprocess.run(["ctest", "-VV", "--test-dir",
                        "{}".format(args.dir), "-C", "Debug", "--output-on-failure"])
     else:
-        # TODO: Figure out a name for the game
-        subprocess.run(["{}/bin/Debug/Game.exe".format(args.dir)])
+        subprocess.run(["{}/bin/Debug/Monstrus.exe".format(args.dir)])
 
 
 if __name__ == "__main__":

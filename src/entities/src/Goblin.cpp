@@ -2,7 +2,7 @@
 #include <string>
 #include "Goblin.hpp"
 
-namespace Game::Entities {
+namespace Monstrus::Entities {
     const Action Goblin::setUp() {
         // For now, reduces attack of opposite enemy
         std::cout << "Goblin is setting up! Current HP is " + std::to_string(this->hp) << std::endl;
