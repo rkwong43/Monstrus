@@ -23,10 +23,11 @@ namespace Game::Entities {
          */
         Entity(int hp, int attack) : hp(hp), attack(attack){};
 
-        Action setUp() override;
-        Action takeAction() override;
-        Action react() override;
+        virtual const Action setUp() = 0;
+        virtual const Action takeAction() = 0;
+        virtual const Action react() = 0;
         int getHp() override;
+        void update(Update update) override;
 
         virtual EntityType getType() = 0;
 
@@ -35,5 +36,11 @@ namespace Game::Entities {
         int hp;
         // Attack damage of the entity
         int attack;
+        // Current position on team
+        int posn;
+        // Size of team
+        int teamSize;
+        // Size of enemy team
+        int enemySize;
     };
 }  // namespace Game::Entities

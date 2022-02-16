@@ -2,8 +2,11 @@
 #include "DefaultEntity.hpp"
 
 namespace Game::Entities {
-    Action Entity::setUp() { std::cout << "Setting up!" << std::endl; }
-    Action Entity::takeAction() { std::cout << "Taking action!" << std::endl; }
-    Action Entity::react() { std::cout << "Reacting!" << std::endl; }
     int Entity::getHp() { return hp; }
+    void Entity::update(Update update) {
+        // Reminder: teamSize and enemySize is the size of the vector
+        posn = update.posn;
+        teamSize = update.teamNum;
+        enemySize = update.enemyNum;
+    }
 }  // namespace Game::Entities

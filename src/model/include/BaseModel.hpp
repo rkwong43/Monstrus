@@ -80,6 +80,12 @@ namespace Game::Model {
          */
         void removeIfDead(ENTITY_VECTOR_TYPE& vec);
 
+        /**
+         * @brief Updates each entity of their position and team info.
+         *
+         */
+        void updateEntities();
+
         // If the game is over!
         bool gameOver{false};
         // If the state needs to be cycled:

@@ -3,6 +3,7 @@
 #include <memory>
 #include "BaseModel.hpp"
 #include "EntityTypes.hpp"
+#include "IEntity.hpp"
 #include "Knight.hpp"
 #include "Goblin.hpp"
 
@@ -52,14 +53,15 @@ namespace Game::Model {
 
     void BaseModel::setupPhase() {
         // Sets up the current entity:
-        auto action = currentSide->at(currentIndex)->setUp();
+        const auto action = currentSide->at(currentIndex)->setUp();
         currentIndex++;
     }
 
     void BaseModel::actionPhase() {
         // Handle all the other logic like taking damage, healing, buffs/debuffs etc.
         // Record what happened in a game state of some kind
-        currentSide->front()->takeAction();
+        const auto action = currentSide->front()->takeAction();
+        std::cout << action.value << std::endl;
         // Forces a side change and/or a state change
         currentIndex = currentSide->size();
         // Have to find a way to check if the opposing side's front unit or any unit is dead
@@ -70,7 +72,8 @@ namespace Game::Model {
     void BaseModel::reactionPhase() {
         // Find some way to pass down information about what happened (some kind of update or event? A gamestate?)
         // Check if unit is dead?
-        currentSide->at(currentIndex)->react();
+        // TODO: Pass an Action
+        const auto action = currentSide->at(currentIndex)->react();
         currentIndex++;
     }
 
@@ -99,5 +102,20 @@ namespace Game::Model {
 
     void BaseModel::removeIfDead(ENTITY_VECTOR_TYPE & vec) {
         vec->erase(std::remove_if(vec->begin(), vec->end(), [&](const auto& e) { return e->getHp() <= 0; }), vec->end());
+    }
+
+    void BaseModel::updateEntities() {
+        auto i = 0;
+        auto allySize = allies->size();
+        auto enemySize = enemies->size();
+        for (auto& ally : *allies) {
+            ally->update(Entities::Update(i, allySize, enemySize));
+            i++;
+        }
+        i = 0;
+        for (auto& enemy : *enemies) {
+            enemy->update(Entities::Update(i, allySize, enemySize));
+            i++;
+        }
     }
 }  // namespace Game::Model

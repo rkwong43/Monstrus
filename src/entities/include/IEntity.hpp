@@ -4,6 +4,21 @@
 #include "Action.hpp"
 
 namespace Game::Entities {
+    /**
+     * @brief Represents an update to an entity.
+     *
+     * Can be expanded if necessary.
+     */
+    struct Update {
+        Update(int posn, int teamNum, int enemyNum) : posn(posn), teamNum(teamNum), enemyNum(enemyNum) {}
+        // Current position in the party
+        int posn;
+        // Number of teammates (includes self)
+        int teamNum;
+        // Number of enemies on the opposite self
+        int enemyNum;
+    };
+
     class IEntity {
        public:
         /**
@@ -11,19 +26,19 @@ namespace Game::Entities {
          *
          * Called in the setup phase, even if it is not the entity's turn for action.
          */
-        virtual Action setUp() = 0;
+        virtual const Action setUp() = 0;
         /**
          * @brief Calls any abilities that apply in the action phase (second phase)
          *
          * Called in the action phase, where this entity is the frontmost entity.
          */
-        virtual Action takeAction() = 0;
+        virtual const Action takeAction() = 0;
         /**
          * @brief Calls any abilities that apply in the reaction phase (third phase)
          *
          * Called in the reaction phase, after the frontmost entities use their actions.
          */
-        virtual Action react() = 0;
+        virtual const Action react() = 0;
         /**
          * @brief Returns what type the entity is.
          *
@@ -35,5 +50,12 @@ namespace Game::Entities {
          *
          */
         virtual int getHp() = 0;
+        /**
+         * @brief Updates the entity with necessary information to perform actions.
+         *
+         * @param update The information to take in.
+         *
+         */
+        virtual void update(Update update) = 0;
     };
 }  // namespace Game::Entities

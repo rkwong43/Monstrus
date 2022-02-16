@@ -13,9 +13,9 @@ namespace Game::Entities {
          */
         Goblin() : Entity(15, 10) {}
 
-        Action setUp() override;
-        Action takeAction() override;
-        Action react() override;
+        const Action setUp() override;
+        const Action takeAction() override;
+        const Action react() override;
 
         EntityType getType() override { return EntityType::Goblin; }
     };

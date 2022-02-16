@@ -12,7 +12,9 @@ namespace Game::Entities {
         // Increases Atk of specified targets
         BUFF,
         // Decreases Atk of specified targets
-        DEBUFF
+        DEBUFF,
+        // Does nothing
+        NONE
     };
 
     // Which team? Or everyone?
@@ -21,6 +23,11 @@ namespace Game::Entities {
     struct Action {
         Action(ActionType type, int value, Side side, std::initializer_list<int> targetPosns) : type(type), value(value) {
             targets = std::vector<int>(targetPosns);
+        }
+        Action(ActionType type) : type(type) {
+            if (type != ActionType::NONE) {
+                throw std::runtime_error("Given non-NONE action type without parameters.");
+            }
         }
         // What type of action?
         ActionType type;
