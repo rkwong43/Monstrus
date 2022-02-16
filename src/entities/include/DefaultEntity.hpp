@@ -27,6 +27,8 @@ namespace Monstrus::Entities {
         virtual const Action takeAction() = 0;
         virtual const Action react() = 0;
         int getHp() override;
+        void addHp(const int num) override;
+        void addAttack(const int num) override;
         void update(Update update) override;
 
         virtual EntityType getType() = 0;

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdexcept>
 #include <memory>
+#include <functional>
+
 #include "BaseModel.hpp"
 #include "EntityTypes.hpp"
 #include "IEntity.hpp"
@@ -10,11 +12,12 @@
 namespace Monstrus::Model {
     void BaseModel::update() {
         // TODO: have some sort of lock or blocker so animations can play out etc.
-        checkCurrentSide();
         if (gameOver) {
             std::cout << "Game is over!" << std::endl;
             return;
         }
+        checkCurrentSide();
+        updateEntities();
         switch (currentState) {
             case State::Setup:
                 setupPhase();
@@ -53,27 +56,23 @@ namespace Monstrus::Model {
 
     void BaseModel::setupPhase() {
         // Sets up the current entity:
-        const auto action = currentSide->at(currentIndex)->setUp();
+        applyAction(currentSide->at(currentIndex)->setUp());
         currentIndex++;
     }
 
     void BaseModel::actionPhase() {
         // Handle all the other logic like taking damage, healing, buffs/debuffs etc.
         // Record what happened in a game state of some kind
-        const auto action = currentSide->front()->takeAction();
-        std::cout << action.value << std::endl;
+        applyAction(currentSide->front()->takeAction());
         // Forces a side change and/or a state change
         currentIndex = currentSide->size();
-        // Have to find a way to check if the opposing side's front unit or any unit is dead
-        // Checks if either are alive
-        // TODO: implement health
     }
 
     void BaseModel::reactionPhase() {
         // Find some way to pass down information about what happened (some kind of update or event? A gamestate?)
         // Check if unit is dead?
         // TODO: Pass an Action
-        const auto action = currentSide->at(currentIndex)->react();
+        applyAction(currentSide->at(currentIndex)->react());
         currentIndex++;
     }
 
@@ -100,7 +99,7 @@ namespace Monstrus::Model {
         return gameOver;
     }
 
-    void BaseModel::removeIfDead(ENTITY_VECTOR_TYPE & vec) {
+    void BaseModel::removeIfDead(ENTITY_VECTOR_PTR_TYPE & vec) {
         vec->erase(std::remove_if(vec->begin(), vec->end(), [&](const auto& e) { return e->getHp() <= 0; }), vec->end());
     }
 
@@ -118,4 +117,58 @@ namespace Monstrus::Model {
             i++;
         }
     }
+
+    void BaseModel::applyAction(const Entities::Action action) {
+        switch (action.side) {
+            case Entities::Side::CURRENT:
+                applyActionToSide(currentSide, action);
+                break;
+            case Entities::Side::OPPOSITE:
+                // Lowkey pretty hacky but it works for now
+                entities->next();
+                applyActionToSide(entities->front(), action);
+                entities->next();
+                break;
+            case Entities::Side::ALL:
+                applyActionToSide(allies, action);
+                applyActionToSide(enemies, action);
+                break;
+            default:
+                throw std::runtime_error("Invalid team given as target");
+        }
+    }
+
+    void BaseModel::applyActionToSide(const ENTITY_VECTOR_PTR_TYPE& side, const Entities::Action action) {
+        auto val = action.value;
+        std::function<void(Entities::IEntity*, int)> fn;
+        switch (action.type) {
+            case Entities::ActionType::ATTACK:
+                val *= -1;
+            case Entities::ActionType::DEFEND:
+                fn = [=](Entities::IEntity* e, int n) { e->addHp(n); };
+                break;
+            case Entities::ActionType::DEBUFF:
+                val *= -1;
+            case Entities::ActionType::BUFF:
+                fn = [=](Entities::IEntity* e, int n) { e->addAttack(n); };
+                break;
+            case Entities::ActionType::NONE:
+                // TODO: Might want to add something here, like an animation?
+                return;
+                break;
+            default:
+                throw std::runtime_error("Unhandled action type!");
+        }
+
+        if (!action.targets.empty()) {
+            for (auto i : action.targets) {
+                fn(side->at(i).get(), val);
+            }
+        } else {
+            for (auto& entity : *side) {
+                fn(entity.get(), val);
+            }
+        }
+    }
+
 }  // namespace Monstrus::Model

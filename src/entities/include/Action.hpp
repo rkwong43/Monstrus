@@ -1,10 +1,11 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 namespace Monstrus::Entities {
     // What type of action is this?
-    enum class ActionType {
+    const enum class ActionType {
         // Decreases HP of specified targets
         ATTACK,
         // Increases HP of specified targets
@@ -18,12 +19,13 @@ namespace Monstrus::Entities {
     };
 
     // Which team? Or everyone?
-    enum class Side { ALLIES, ENEMIES, ALL };
+    const enum class Side { CURRENT, OPPOSITE, ALL };
 
     struct Action {
-        Action(ActionType type, int value, Side side, std::initializer_list<int> targetPosns) : type(type), value(value) {
+        Action(ActionType type, int value, Side side, std::initializer_list<int> targetPosns) : type(type), value(value), side(side) {
             targets = std::vector<int>(targetPosns);
         }
+        Action(ActionType type, int value, Side side) : type(type), value(value), side(side) {}
         Action(ActionType type) : type(type) {
             if (type != ActionType::NONE) {
                 throw std::runtime_error("Given non-NONE action type without parameters.");

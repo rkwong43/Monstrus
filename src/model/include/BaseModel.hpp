@@ -10,7 +10,7 @@
 
 // TODO: Look for a better way to do this
 // Mainly have this to improve readability
-#define ENTITY_VECTOR_TYPE std::shared_ptr<std::vector<std::unique_ptr<Entities::IEntity>>>
+#define ENTITY_VECTOR_PTR_TYPE std::shared_ptr<std::vector<std::unique_ptr<Entities::IEntity>>>
 
 namespace Monstrus::Model {
     class BaseModel : public IModel {
@@ -78,13 +78,31 @@ namespace Monstrus::Model {
          * @param vec The vector to remove dead entities from.
          *
          */
-        void removeIfDead(ENTITY_VECTOR_TYPE& vec);
+        void removeIfDead(ENTITY_VECTOR_PTR_TYPE& vec);
 
         /**
          * @brief Updates each entity of their position and team info.
          *
          */
         void updateEntities();
+
+        /**
+         * @brief Applies the given action.
+         *
+         * Uses the helper, applyActionToSide() to actually do the math. This only determines
+         * which team will be affected.
+         *
+         * @param action The action to apply.
+         */
+        void applyAction(const Entities::Action action);
+
+        /**
+         * @brief Applies the given action to the given team.
+         *
+         * @param side Which vector of entities to apply the action to
+         * @param action What action to apply.
+         */
+        void applyActionToSide(const ENTITY_VECTOR_PTR_TYPE& side, const Entities::Action action);
 
         // If the game is over!
         bool gameOver{false};
@@ -104,13 +122,13 @@ namespace Monstrus::Model {
         // Replace with a linked list?
         // TODO: Look into some other way of storing them other than nested unique pointers. This is very messy
         // Look into efficiency, but shouldn't be too big of an issue because these aren't meant to be large vectors
-        ENTITY_VECTOR_TYPE allies{std::make_shared<std::vector<std::unique_ptr<Entities::IEntity>>>()};
-        ENTITY_VECTOR_TYPE enemies{std::make_shared<std::vector<std::unique_ptr<Entities::IEntity>>>()};
+        ENTITY_VECTOR_PTR_TYPE allies{std::make_shared<std::vector<std::unique_ptr<Entities::IEntity>>>()};
+        ENTITY_VECTOR_PTR_TYPE enemies{std::make_shared<std::vector<std::unique_ptr<Entities::IEntity>>>()};
 
-        std::unique_ptr<Utils::ConstLinkedList<ENTITY_VECTOR_TYPE>> entities{
-            std::make_unique<Utils::ConstLinkedList<ENTITY_VECTOR_TYPE>>(std::initializer_list<ENTITY_VECTOR_TYPE>({allies, enemies}))};
+        std::unique_ptr<Utils::ConstLinkedList<ENTITY_VECTOR_PTR_TYPE>> entities{
+            std::make_unique<Utils::ConstLinkedList<ENTITY_VECTOR_PTR_TYPE>>(std::initializer_list<ENTITY_VECTOR_PTR_TYPE>({allies, enemies}))};
 
-        ENTITY_VECTOR_TYPE currentSide{entities->front()};
+        ENTITY_VECTOR_PTR_TYPE currentSide{entities->front()};
         // Index of the current side:
         int currentIndex{0};
     };

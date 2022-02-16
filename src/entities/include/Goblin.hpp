@@ -11,7 +11,7 @@ namespace Monstrus::Entities {
          * @brief Creates a Knight with default attributes.
          *
          */
-        Goblin() : Entity(15, 10) {}
+        Goblin() : Entity(20, 10) {}
 
         const Action setUp() override;
         const Action takeAction() override;

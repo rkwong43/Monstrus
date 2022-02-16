@@ -51,6 +51,20 @@ namespace Monstrus::Entities {
          */
         virtual int getHp() = 0;
         /**
+         * @brief Adds the given number to the entity's HP.
+         *
+         * @param num The number to change it by, can be negative or positive.
+         *
+         */
+        virtual void addHp(const int num) = 0;
+        /**
+         * @brief Adds the given number to the entity's attack.
+         *
+         * @param num The number to change it by, can be negative or positive.
+         *
+         */
+        virtual void addAttack(const int num) = 0;
+        /**
          * @brief Updates the entity with necessary information to perform actions.
          *
          * @param update The information to take in.
