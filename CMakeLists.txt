@@ -19,7 +19,10 @@ if (${SDL2_PATH} STREQUAL "")
     message("SDL2 not found in extern/SDL2-*...")
 endif()
 find_package(SDL2 REQUIRED)
-file(GLOB SDL2_DIR CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/extern/SDL2_image-*")
+# SDL2_image for loading other image formats
+file(GLOB SDL2_IMAGE_PATH CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/extern/SDL2_image-*")
+# Just for the CMake module script
+set(SDL2_DIR ${SDL2_IMAGE_PATH})
 find_package(SDL2_image REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIRS})
 
@@ -53,10 +56,14 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     ${SDL2_IMAGE_LIBRARIES}
 )
 
-# Copying DLL over into directory of executable
-add_custom_command( TARGET ${PROJECT_NAME} 
-                    PRE_BUILD
-                    COMMAND ${CMAKE_COMMAND} -E copy_if_different "${SDL2_PATH}/lib/x64/SDL2.dll" $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+# Copying DLLs over into directory of executable
+file(GLOB IMAGE_DLLS CONFIGURE_DEPENDS "${SDL2_IMAGE_PATH}/lib/x64/*.dll")
+set(DLLS "${SDL2_PATH}/lib/x64/SDL2.dll" ${IMAGE_DLLS})
+foreach(DLL_PATH IN LISTS DLLS)
+    add_custom_command( TARGET ${PROJECT_NAME} 
+                        PRE_BUILD
+                        COMMAND ${CMAKE_COMMAND} -E copy_if_different ${DLL_PATH} $<TARGET_FILE_DIR:${PROJECT_NAME}>)
+endforeach()
 
 set(MAIN_INCLUDE_DIRS 
     "${CMAKE_SOURCE_DIR}/src/entities/include"
