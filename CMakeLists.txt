@@ -19,7 +19,9 @@ if (${SDL2_PATH} STREQUAL "")
     message("SDL2 not found in extern/SDL2-*...")
 endif()
 find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIR})
+file(GLOB SDL2_DIR CONFIGURE_DEPENDS "${CMAKE_SOURCE_DIR}/extern/SDL2_image-*")
+find_package(SDL2_image REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIRS})
 
 # Catch2
 enable_testing()
@@ -48,6 +50,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     view
     entities
     ${SDL2_LIBRARY}
+    ${SDL2_IMAGE_LIBRARIES}
 )
 
 # Copying DLL over into directory of executable
