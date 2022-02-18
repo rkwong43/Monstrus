@@ -40,6 +40,14 @@ namespace Monstrus::Utils {
             innerList->push_back(oldState);
         }
 
+        /**
+         * @brief Returns how many nodes are inside the linked list.
+         *
+         * @return Integer of how many nodes are inside the linked list.
+         *
+         */
+        int size() { return innerList->size(); }
+
        private:
         // Inner list
         std::unique_ptr<std::list<T>> innerList{std::make_unique<std::list<T>>()};

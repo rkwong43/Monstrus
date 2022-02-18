@@ -26,4 +26,13 @@ namespace Monstrus::Utils {
             REQUIRE(list1.front() == 3);
         }
     }
+
+    TEST_CASE("ConstLinkedList can return its correct size", "[ConstLinkedList]") {
+        ConstLinkedList<int> list1{1, 2, 3};
+        REQUIRE(list1.size() == 3);
+        ConstLinkedList<int> list2{1};
+        REQUIRE(list2.size() == 1);
+        ConstLinkedList<int> list3{};
+        REQUIRE(list3.size() == 0);
+    }
 }  // namespace Monstrus::Utils
