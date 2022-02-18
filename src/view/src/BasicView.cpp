@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 #include "SDL.h"
+#include "SDL_image.h"
 #include "Sprite.hpp"
 #include "EntityTypes.hpp"
 #include "BasicView.hpp"
@@ -26,16 +27,18 @@ namespace Monstrus::View {
 
     void BasicView::loadAssets() {
         // Just going to load one thing for now
-        // entities->insert({Entities::EntityType::Knight, std::make_unique<Sprite>({NULL})});
+        auto flags = IMG_INIT_PNG;
+        auto surface = IMG_Load("resources/images/Knight.png");
+        entities->insert({Entities::EntityType::Knight, std::make_unique<Sprite>(std::initializer_list{surface})});
     }
 
     BasicView::~BasicView() {
         SDL_DestroyWindow(window);
-        for (auto& element : *entities) {
-            element.second->destroy();
-        }
-        for (auto& element : *assets) {
-            element.second->destroy();
-        }
+        // for (auto& element : *entities) {
+        //     element.second->destroy();
+        // }
+        // for (auto& element : *assets) {
+        //     element.second->destroy();
+        // }
     }
 }  // namespace Monstrus::View

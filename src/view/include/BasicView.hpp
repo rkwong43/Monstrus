@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "EntityTypes.hpp"
 #include "IRenderable.hpp"
+#include "Sprite.hpp"
 #include "IView.hpp"
 
 namespace Monstrus::View {
@@ -34,8 +35,10 @@ namespace Monstrus::View {
         int height{500};
 
         // Entities and their sprites
-        std::unique_ptr<std::unordered_map<Entities::EntityType, std::unique_ptr<Sprite>>> entities;
+        std::unique_ptr<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>> entities{
+            std::make_unique<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>>()};
         // Assets such as backgrounds or other non-entities
-        std::unique_ptr<std::unordered_map<Entities::EntityType, std::unique_ptr<Sprite>>> assets;
+        std::unique_ptr<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>> assets{
+            std::make_unique<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>>()};
     };
 }  // namespace Monstrus::View
