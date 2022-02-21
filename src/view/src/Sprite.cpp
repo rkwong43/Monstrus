@@ -1,3 +1,4 @@
+
 #include "SDL.h"
 #include "Sprite.hpp"
 
@@ -9,6 +10,7 @@ namespace Monstrus::View {
             sprites->next();
         }
     }
-    void Sprite::render() {}
-    void Sprite::animate() {}
+
+    SDL_Surface* Sprite::getImage() { return sprites->front(); }
+    void Sprite::animate() { sprites->next(); }
 }  // namespace Monstrus::View

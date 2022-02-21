@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SDL.h"
+
 namespace Monstrus::View {
     /**
      * @brief Represents something that can be rendered and displayed.
@@ -9,10 +11,10 @@ namespace Monstrus::View {
        public:
         virtual ~IRenderable() {}
         /**
-         * @brief Renders the object on the screen.
+         * @brief Returns the image to render on the screen.
          *
          */
-        virtual void render() = 0;
+        virtual SDL_Surface* getImage() = 0;
 
         /**
          * @brief Animates the object by changing what image is rendered.

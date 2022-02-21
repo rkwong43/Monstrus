@@ -15,13 +15,18 @@ namespace Monstrus::View {
 
     void BasicView::renderAll() {
         // For now, just test that SDL works
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+        // SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
         // Clearing the render buffer
-        SDL_RenderClear(renderer);
-
+        // SDL_RenderClear(renderer);
+        for (auto& element : *assets) {
+            // Figure out positions? Also change to use entities
+            SDL_Rect pos;
+            SDL_BlitScaled(element.second->getImage(), NULL, display, &pos);
+        }
+        // Displaying everything that is drawn with renderer
+        SDL_UpdateWindowSurface(window);
         SDL_Delay(1000);
-        // Displaying everything that is drawn
-        SDL_RenderPresent(renderer);
+        // SDL_RenderPresent(renderer);
     }
 
     void BasicView::initAssets() {
@@ -36,7 +41,10 @@ namespace Monstrus::View {
     void BasicView::loadAssets() {
         // Just going to load one thing for now
         auto flags = IMG_INIT_PNG;
-        auto surface = IMG_Load("resources/images/Knight.png");
-        entities->insert({Entities::EntityType::Knight, std::make_unique<Sprite>(std::initializer_list{surface})});
+
+        auto rawImage = IMG_Load("resources/images/Knight.png");
+        auto optimizedImage = SDL_ConvertSurface(rawImage, display->format, 0);
+        assets->insert({Entities::EntityType::Knight, std::make_unique<Sprite>(std::initializer_list{optimizedImage})});
+        SDL_FreeSurface(rawImage);
     }
 }  // namespace Monstrus::View

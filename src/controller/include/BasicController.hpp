@@ -2,6 +2,7 @@
 
 #include <memory>
 
+#include "SDL.h"
 #include "IController.hpp"
 #include "IView.hpp"
 #include "IModel.hpp"
@@ -24,7 +25,14 @@ namespace Monstrus::Controller {
         void start() override;
 
        protected:
-        void processInput();
+        /**
+         * @brief Processes user input and SDL events.
+         *
+         * @param e SDL event handler
+         * @return true if user quit out of program
+         * @return false to continue running per usual
+         */
+        bool processInput(SDL_Event* e);
 
        private:
         // Model for game logic

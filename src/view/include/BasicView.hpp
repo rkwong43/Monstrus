@@ -43,11 +43,12 @@ namespace Monstrus::View {
         int width{1000};
         int height{500};
 
-        // Entities and their sprites
-        std::unique_ptr<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>> entities{
-            std::make_unique<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>>()};
-        // Assets such as backgrounds or other non-entities
+        // Assets and their sprites, meant to be a reference towards their image
         std::unique_ptr<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>> assets{
+            std::make_unique<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>>()};
+        // Current objects to be rendered
+        // TODO: Add struct with dimensions, positions, type, and ID to this
+        std::unique_ptr<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>> entities{
             std::make_unique<std::unordered_map<Entities::EntityType, std::unique_ptr<IRenderable>>>()};
     };
 }  // namespace Monstrus::View
