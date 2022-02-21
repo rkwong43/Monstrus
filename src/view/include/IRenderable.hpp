@@ -19,11 +19,5 @@ namespace Monstrus::View {
          *
          */
         virtual void animate() = 0;
-
-        /**
-         * @brief Destroys the images loaded through SDL.
-         *
-         */
-        virtual void destroy() = 0;
     };
 }  // namespace Monstrus::View

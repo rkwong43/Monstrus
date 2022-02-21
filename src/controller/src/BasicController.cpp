@@ -6,7 +6,6 @@ namespace Monstrus::Controller {
     void BasicController::start() {
         // SDL2 initialization
         SDL_Init(SDL_INIT_EVERYTHING);
-        view->initAssets();
         // Main game loop
         // For now, this is just the game loop for a single instance/fight. Will add menus and the tavern later on
         int counter = 0;

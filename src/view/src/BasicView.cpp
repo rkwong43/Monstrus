@@ -7,13 +7,21 @@
 #include "BasicView.hpp"
 
 namespace Monstrus::View {
+    BasicView::~BasicView() {
+        // Will also destroy the display surface
+        SDL_DestroyWindow(window);
+        SDL_DestroyRenderer(renderer);
+    }
+
     void BasicView::renderAll() {
         // For now, just test that SDL works
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+        // Clearing the render buffer
         SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
 
         SDL_Delay(1000);
+        // Displaying everything that is drawn
+        SDL_RenderPresent(renderer);
     }
 
     void BasicView::initAssets() {
@@ -30,15 +38,5 @@ namespace Monstrus::View {
         auto flags = IMG_INIT_PNG;
         auto surface = IMG_Load("resources/images/Knight.png");
         entities->insert({Entities::EntityType::Knight, std::make_unique<Sprite>(std::initializer_list{surface})});
-    }
-
-    BasicView::~BasicView() {
-        SDL_DestroyWindow(window);
-        // for (auto& element : *entities) {
-        //     element.second->destroy();
-        // }
-        // for (auto& element : *assets) {
-        //     element.second->destroy();
-        // }
     }
 }  // namespace Monstrus::View

@@ -12,11 +12,14 @@ namespace Monstrus::View {
      */
     class Sprite : public IRenderable {
        public:
+        ~Sprite();
+        Sprite& operator=(const Sprite& other) = delete;
+        Sprite(const Sprite& other) = delete;
+
         Sprite(std::initializer_list<SDL_Surface*> images) { sprites = std::make_unique<Utils::ConstLinkedList<SDL_Surface*>>(images); }
 
         void render() override;
         void animate() override;
-        void destroy() override;
 
        private:
         std::unique_ptr<Utils::ConstLinkedList<SDL_Surface*>> sprites;

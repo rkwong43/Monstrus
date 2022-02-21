@@ -12,9 +12,12 @@ namespace Monstrus::View {
     class BasicView : public IView {
        public:
         ~BasicView();
+        BasicView& operator=(const BasicView& other) = delete;
+        BasicView(const BasicView& other) = delete;
+
+        BasicView() { initAssets(); }
 
         void renderAll() override;
-        void initAssets() override;
 
        private:
         /**
@@ -22,6 +25,12 @@ namespace Monstrus::View {
          *
          */
         void loadAssets();
+
+        /**
+         * @brief Initializes all assets.
+         *
+         */
+        void initAssets();
 
         // Considering using smart pointers, but a hassle to deal with custom deletion
         // Main game display.
